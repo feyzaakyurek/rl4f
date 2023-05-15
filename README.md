@@ -2,7 +2,7 @@
 
 Code repository for the ACL 2023 paper "RL4F: Generating Natural Language Feedback with Reinforcement Learning". Afra Feyza Akyurek, Ekin Akyurek, Aman Madaan, Ashwin Kalyan, Peter Clark, Derry Wijaya, Niket Tandon. 
 
-![RL4F](model_full.png)
+![](method_full.png)
 
 This codebase is primarily based on the [RL4LMs](https://github.com/allenai/RL4LMs) repository. We provide custom data classes and reward functions to implement RL4F.
 
