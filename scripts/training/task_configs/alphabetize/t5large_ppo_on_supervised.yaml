@@ -1,0 +1,105 @@
+tokenizer:
+  model_name: t5-large
+  padding_side: left
+  truncation_side: right
+  pad_token_as_eos_token: False
+
+reward_fn:
+  id: editmatch
+  args:
+    metric:
+      prompt_path: "./data/alphabetize/prompts.txt"
+      separator: "\n\n---\n\n"
+      downstream_metric_name: inverse_levenshtein_diff_exact_match
+      openai_key: openai_key
+      gpt3_model_name: code-davinci-002
+      cache_path: "./alphabetize_output/cache.json"
+      save_path: ""
+    tokenizer:
+      model_name: t5-large
+      padding_side: left
+      truncation_side: right
+      pad_token_as_eos_token: False
+  
+datapool:
+  id: alphabetize
+  args:
+    prompt_prefix: "critique: "
+    stage: ppo_sampled
+# or "critique" for summarization.
+
+env:
+  n_envs: 8
+  args:
+    max_prompt_length: 90
+    max_episode_length: 20
+    terminate_on_eos: True
+    prompt_truncation_side: "right"
+    context_start_token: 0
+
+alg:
+  id: ppo
+  args: 
+    n_steps: 240
+    batch_size: 24
+    verbose: 0
+    learning_rate: 0.000001
+    n_epochs: 5
+    ent_coef: 0.001
+  kl_div:
+    coeff: 0.001
+    target_kl: 2
+  policy:
+    id: seq2seq_lm_actor_critic_policy
+    args:
+      model_name: ./alphabetize_output/alphabetize_sup_scale/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0/model
+      apply_model_parallel: True
+      prompt_truncation_side: "right"
+      optimizer_kwargs:
+        weight_decay: 0.01
+      generation_kwargs:
+        do_sample: True
+        top_k: 100
+        min_length: 5
+        max_new_tokens: 20
+    
+train_evaluation:
+  eval_batch_size: 48
+  seed: 0
+  n_iters: 50
+  eval_every: 5
+  save_every: 5
+  metrics:
+    # - id: meteor
+    #   args: {}
+    - id: rouge
+    # - id: bleu
+    #   args: {}
+    - id: editmatch
+      args: 
+        prompt_path: "./data/alphabetize/prompts.txt"
+        separator: "\n\n---\n\n"
+        downstream_metric_name: inverse_levenshtein_diff_exact_match
+        openai_key: openai_key
+        gpt3_model_name: code-davinci-002
+        cache_path: "./alphabetize_output/cache.json"
+    # - id: bert_score
+    #   args:
+    #     language: en
+    # - id: bleurt
+    #   args:
+    #     config_name: bleurt-large-512
+    - id: diversity
+      args: {}
+    # - id: summaCZS
+    #   args:
+    #     granularity: sentence
+    #     use_ent: True
+    #     use_con: False
+    # - id: summaCConv
+    #   args:
+    #     granularity: sentence
+  generation_kwargs:
+    num_beams: 5
+    min_length: 5
+    max_new_tokens: 20

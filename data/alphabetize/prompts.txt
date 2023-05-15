@@ -1,0 +1,39 @@
+The task is to alphabetize a provided word list.
+The original list and an intial attempt are separated with |||.
+Given feedback in natural language you should fix the attempt and submit the corrected list.
+
+---
+
+leaping reintroduced scab liquor barbecue ||| barbecue bbq leaping liquor reintroduced scab
+Feedback: The word bbq is not in the original list.
+Edit: barbecue leaping liquor reintroduced scab
+
+---
+
+jakarta english chinese seem postulate hair nail burden dominate ||| burden chinese dominate english jakarta nail postulate seem
+Feedback: The word hair is missing.
+Edit: burden chinese dominate english hair jakarta nail postulate seem
+
+---
+
+homemade among accurate ||| accurate amongst homemade
+Feedback: The word among is replaced with amongst.
+Edit: accurate among homemade
+
+---
+
+twenty fifty forty happy thirty sadness beige babies maine road tip trip istanbul detach word ||| babies beige detach forty fifty happy maine istanbul road sadness tip twenty thirty trip word
+Feedback: The word istanbul is placed in an incorrect position.
+Edit: babies beige detach forty fifty happy istanbul maine road sadness tip twenty thirty trip word
+
+---
+
+discard dispute discord disoriented diabetes dreary dump detect distort ||| detect diabetes discard discord dreary disoriented dispute distort dreary dump
+Feedback: The word dreary is repeated.
+Edit: detect diabetes discard discord disoriented dispute distort dreary dump
+
+---
+
+compose wait weight locked tribute three revolution ||| compose locked revolution three tribute wait weight
+Feedback: The list is correctly sorted.
+Edit: compose locked revolution three tribute wait weight
