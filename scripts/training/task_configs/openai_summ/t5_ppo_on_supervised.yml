@@ -1,0 +1,113 @@
+tokenizer:
+  model_name: t5-large
+  padding_side: right
+  truncation_side: right
+  pad_token_as_eos_token: False
+  model_max_length: 1024
+
+reward_fn:
+  id: editmatch
+  args:
+    metric:
+      prompt_path: "./data/openai_summ/topic/prompts_edit_instructional_novo.txt"
+      separator: "\n\n---\n\n"
+      downstream_metric_name: rouge_combined
+      openai_key: openai_key
+      gpt3_model_name: code-davinci-002
+      cache_path: "./openai_summ_output/cache_me.json"
+      save_path: ""
+      append_feedback_to_q: True
+    tokenizer:
+      model_name: t5-large
+      padding_side: right
+      truncation_side: right
+      pad_token_as_eos_token: False
+  
+datapool:
+  id: openai_summ
+  args:
+    prompt_prefix: "critique: "
+    stage: ppo
+
+
+env:
+  n_envs: 10
+  args:
+    max_prompt_length: 1024
+    max_episode_length: 180
+    terminate_on_eos: True
+    prompt_truncation_side: "right"
+    context_start_token: 0
+
+alg:
+  id: ppo
+  args: 
+    n_steps: 1024
+    batch_size: 2
+    verbose: 0
+    learning_rate: 0.000001
+    n_epochs: 3
+    ent_coef: 0.001
+  kl_div:
+    coeff: 0.01
+    target_kl: 2.0
+  policy:
+    id: seq2seq_lm_actor_critic_policy
+    args:
+      model_name: ./openai_summ_output/openai_summ_sup/t5large_lr1e6/model # ./data/trained_models_ai2/t5large_openai_summ_QMQ3V
+      apply_model_parallel: True
+      prompt_truncation_side: "right"
+      optimizer_kwargs:
+        weight_decay: 0.01
+      generation_kwargs:
+        do_sample: True
+        top_k: 0
+        temperature: 0.7
+        min_length: 20
+        max_new_tokens: 150
+    
+train_evaluation:
+  eval_batch_size: 6
+  seed: 0
+  n_iters: 100
+  eval_every: 3
+  save_every: 3
+  metrics:
+    # - id: meteor
+    #   args: {}
+    # - id: rouge
+    # - id: bleu
+    #   args: {}
+    - id: editmatch
+      args: 
+        prompt_path: "./data/openai_summ/topic/prompts_edit_instructional_novo.txt"
+        separator: "\n\n---\n\n"
+        downstream_metric_name: rouge_combined
+        openai_key: openai_key
+        gpt3_model_name: code-davinci-002
+        cache_path: "./openai_summ_output/cache_me.json"
+        save_path: ""
+        append_feedback_to_q: True
+        lambda_rouge_input: 4
+    # - id: bert_score
+    #   args:
+    #     language: en
+    # - id: bleurt
+    #   args:
+    #     config_name: bleurt-large-512
+    - id: diversity
+      args: {}
+    # - id: summaCZS
+    #   args:
+    #     granularity: sentence
+    #     use_ent: True
+    #     use_con: False
+    # - id: summaCConv
+    #   args:
+    #     granularity: sentence
+  generation_kwargs:
+    do_sample: True
+    temperature: 0.7
+    min_length: 20
+    max_new_tokens: 150
+
