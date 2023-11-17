@@ -1,0 +1,110 @@
+tokenizer:
+  model_name: t5-large
+  padding_side: left
+  truncation_side: left
+  pad_token_as_eos_token: False
+
+reward_fn:
+  id: editmatch
+  args:
+    metric:
+      prompt_path: ".data/interscript/prompts_edit_numeric.txt"
+      separator: "\n\n---\n\n"
+      downstream_metric_name: rouge_combined
+      openai_key: openai_key_pet
+      gpt3_model_name: code-davinci-002
+      cache_path: "./interscript_output/cache_pet.json"
+      save_path: ""
+    tokenizer:
+      model_name: t5-small
+      padding_side: left
+      truncation_side: left
+      pad_token_as_eos_token: False
+  
+datapool:
+  id: interscript
+  args:
+    prompt_prefix: "Critique: "
+    stage: "ppo"
+
+env:
+  n_envs: 10
+  args:
+    max_prompt_length: 90
+    max_episode_length: 50
+    terminate_on_eos: True
+    prompt_truncation_side: "right"
+    context_start_token: 0
+
+alg:
+  id: ppo
+  args: 
+    n_steps: 256
+    batch_size: 2
+    verbose: 1
+    learning_rate: 0.0000005
+    n_epochs: 2
+    ent_coef: 0.001
+    verbose: 0
+  kl_div:
+    coeff: 0.01
+    target_kl: 2.0
+  policy:
+    id: seq2seq_lm_actor_critic_policy
+    args:
+      model_name: "./interscript_output/interscript_sup_scale/t5large_bs6_wd0.01_lr1e-5_beam5_min5_max_100_seed0/model"
+      apply_model_parallel: True
+      prompt_truncation_side: "right"
+      optimizer_kwargs:
+        weight_decay: 0.01
+      generation_kwargs:
+        do_sample: True
+        temperature: 0.7
+        min_length: 15
+        max_new_tokens: 50
+        repetition_penalty: 0.2
+    
+train_evaluation:
+  eval_batch_size: 64
+  seed: 0
+  n_iters: 100
+  eval_every: 2
+  save_every: 2
+  metrics:
+    # - id: meteor
+    #   args: {}
+    # - id: rouge
+    # - id: bleu
+    #   args: {}
+    - id: editmatch
+      args: 
+        prompt_path: "./data/interscript/prompts_edit_numeric.txt"
+        separator: "\n\n---\n\n"
+        downstream_metric_name: rouge_combined
+        openai_key: openai_key_pet
+        gpt3_model_name: code-davinci-002
+        cache_path: "./interscript_output/cache_pet.json"
+        save_path: ""
+    # - id: bert_score
+    #   args:
+    #     language: en
+    # - id: bleurt
+    #   args:
+    #     config_name: bleurt-large-512
+    - id: diversity
+      args: {}
+    # - id: summaCZS
+    #   args:
+    #     granularity: sentence
+    #     use_ent: True
+    #     use_con: False
+    # - id: summaCConv
+    #   args:
+    #     granularity: sentence
+  generation_kwargs:
+    do_sample: True
+    top_k: 0
+    temperature: 0.3
+    min_length: 15
+    max_new_tokens: 50
+
