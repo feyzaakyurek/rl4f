@@ -56,15 +56,6 @@ def main(
             tracker=tracker,
         )
     else:
-        # config["reward_fn"]["args"]["metric"]["save_path"] = os.path.join(
-        #     base_path_to_store_results, project_name, experiment_name
-        # )
-
-        # for metric in config["train_evaluation"]["metrics"]:
-        #     if metric["id"] == "editmatch":
-        #         metric["args"]["save_path"] = os.path.join(
-        #             base_path_to_store_results, project_name, experiment_name
-        #         )
         config["reward_fn"]["args"]["metric"]["save_path"] = os.path.join(
             base_path_to_store_results, project_name, experiment_name
         )
