@@ -1,6 +1,6 @@
 # RL4F: Generating Natural Language Feedback with Reinforcement Learning
 
-Code repository for the ACL 2023 paper "RL4F: Generating Natural Language Feedback with Reinforcement Learning". Afra Feyza Akyurek, Ekin Akyurek, Aman Madaan, Ashwin Kalyan, Peter Clark, Derry Wijaya, Niket Tandon. 
+Code repository for the [ACL 2023 paper](https://aclanthology.org/2023.acl-long.427/) "RL4F: Generating Natural Language Feedback with Reinforcement Learning". Afra Feyza Akyurek, Ekin Akyurek, Aman Madaan, Ashwin Kalyan, Peter Clark, Derry Wijaya, Niket Tandon. Check out the [project page](https://feyzaakyurek.github.io/rl4f-blog/) for a brief introduction.
 
 ![](method_full.png)
 
@@ -41,5 +41,3 @@ If you are receiving an error about your torch installation not supporting sm_86
 ```
 conda install pytorch==1.11.0 cudatoolkit=11.3 -c pytorch
 ```
-
-# Bibtex
