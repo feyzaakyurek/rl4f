@@ -30,7 +30,7 @@ pip install -e .
 ## Running Experiments
 
 ### Datasets
-Download the pretrained checkpoints and data from this [link](https://drive.google.com/drive/folders/1Rl5j7r8RqvOhQUQPRhK8AEoD5-bjAuDI?usp=sharing). For topic-based summarization dataset check out [Saunders et al. (2022)](https://arxiv.org/abs/2206.05802).
+Download the pretrained checkpoints and data from this [link](https://drive.google.com/drive/folders/1Rl5j7r8RqvOhQUQPRhK8AEoD5-bjAuDI?usp=sharing).
 
 All scripts can be found under `rl4f_scripts`. For example, check out the `rl4f_scripts/run_alphabetize_sup.sh` script for warm-starting a pretrained T5-large for supervised critique generation for alphabetization. Alternatively, you can load the released checkpoint from the above drive link. For PPO training, specify the checkpoint at `scripts/training/task_configs/alphabetize/t5large_ppo_on_supervised.yaml` and run `rl4f_scripts/run_alphabetize_ppo.sh`.
 
