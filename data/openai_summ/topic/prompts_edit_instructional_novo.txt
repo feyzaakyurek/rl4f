@@ -1,0 +1,15 @@
+Edit the below summary of the passsage taking into account the remarks in the feedback.
+
+---
+
+Shortly after his inauguration, Kennedy permitted a band of Cuban exiles, already armed and trained, to invade their homeland. The attempt to overthrow the regime of Fidel Castro was a failure. Soon thereafter, the Soviet Union renewed its campaign against West Berlin. Kennedy replied by reinforcing the Berlin garrison and increasing the Nation’s military strength, including new efforts in outer space. Confronted by this reaction, Moscow, after the erection of the Berlin Wall, relaxed its pressure in central Europe.
+
+Instead, the Russians now sought to install nuclear missiles in Cuba. When this was discovered by air reconnaissance in October 1962, Kennedy imposed a quarantine on all offensive weapons bound for Cuba. While the world trembled on the brink of nuclear war, the Russians backed down and agreed to take the missiles away. The American response to the Cuban crisis evidently persuaded Moscow of the futility of nuclear blackmail.
+
+Question: Answer the following question based on the above passage: What does the text say about the aftermath of the failed attempt of the US to overthrow Castro regime?
+
+Answer: Soviet Union started pressuring West Berlin but later backed down. However, the Soviet later saught nucleair missiles in Cuba.
+
+Question: Answer the following question based on the above passage: What does the text say about the aftermath of the failed attempt of the US to overthrow Castro regime? The answer should mentioned that Kennedy government reinforced the Berlin garrison which caused the Soviet Union to back down. It should also mention that following Russian attempt to install nuclear missiles in Cuba, Kennedy imposed a barricade of offensive weapons to Cuba and Russians retreated.
+
+Answer: Soviet Union started pressuring West Berlin but later backed down following the US initiative to strengthen the Berlin garrison and erection of the Berlin Wall. However, the Soviet later saught nucleair missiles in Cuba which was confronted by the US blockade of offensive weapons to Cuba and Russians retreated.

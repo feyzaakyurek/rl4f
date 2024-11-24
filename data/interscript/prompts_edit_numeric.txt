@@ -1,0 +1,39 @@
+Goal: pick up the baby and bring them home
+Steps: 1. make sure the baby is healthy 2. put the baby in the car seat 3. put the car seat belt on 4. get in the car 5. Get out of the car 6. Take the baby out of the car seat 7. open the front door 8. Step inside the house while holding baby carefully 9. Bring the child home
+Feedback: A person needs to drive after they get in the car if they are going to bring someone home
+Edit: Insert 'drive to house' after 4
+
+---
+
+Goal: hit the call connect icon
+Steps: 1. pick up cell phone 2. check contact information 3. unlock phone screen 4. lock the phone screen 5. click on correct contact 6. hit the call connect icon
+Feedback: You don't need to lock the screen back after unlocking it.
+Edit: Remove 4
+
+---
+
+Goal: editor edits the draft
+Steps: 1. writes a first draft 2. look for an editor 3. hire the services 4. find a reputable editor 5. submit the work 6. wait for the editing to finish 7. editor edits the draft
+Feedback: One should find the editor first before they can hire the services.
+Edit: Reorder 3 , 4
+
+---
+
+Goal: boot up the game
+Steps: 1. hook the console up to the tv 2. look for the game icon 3. click on the game icon 4. locate the game icon 5. wait for the game to load 6. press the play button 7. boot up the game
+Feedback: In order the click the game icon, you should first locate the game icon.
+Edit: Reorder 4 , 3
+
+---
+
+Goal: get cat treats
+Steps: 1. decided to get cat treats 2. go to the pet store 3. wait for an associate 4. ask the associate what treats are available 5. pick out some treats 6. leave the treats 7. get cat treats
+Feedback: Leaving the treats after picking them out is unnecessary.
+Edit: Remove 6
+
+---
+
+Goal: discuss who to invite
+Steps: 1. decide on a location 2. pick up phone 3. note down names of friends to invite 4. look up contacts 5. call contacts from phone 6. invite the contacts to party 7. discuss who to invite
+Feedback: After inviting everyone you should make sure no one is missed.
+Edit: Insert 'make sure no one is missed' before 7
